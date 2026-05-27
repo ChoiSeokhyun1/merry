@@ -18,7 +18,7 @@
     <!-- 폰트 로드: Noto Serif (명조) & Inter (고딕/숫자용) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Gowun+Batang:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- 카카오톡 SDK (카카오톡 공유 기능용) -->
@@ -40,15 +40,30 @@
         }
 
         body {
-            background-color: #ffefe8; /* 바깥 배경색도 화사한 피치톤으로 */
+            background-color: #ffefe8;
             color: var(--text-main);
-            font-family: 'Noto Serif KR', serif;
+            font-family: 'Gowun Batang', serif;
             -webkit-font-smoothing: antialiased;
             word-break: keep-all;
             line-height: 1.8;
         }
         
         .number-font { font-family: 'Inter', sans-serif; }
+        .deco-font { font-family: 'Cormorant Garamond', serif; }
+
+        /* 글자별 팝인 애니메이션 */
+        @keyframes charPop {
+            0%   { opacity: 0; transform: translateY(-10px) scale(0.85); }
+            60%  { transform: translateY(2px) scale(1.02); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .char-anim {
+            display: inline-block;
+            opacity: 0;
+        }
+        .char-anim.go {
+            animation: charPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
 
         /* 청첩장 메인 컨테이너 (화사한 그라데이션) */
         .mobile-container {
@@ -61,14 +76,14 @@
             position: relative;
         }
 
-        .section-padding { padding: 80px 24px; }
+        .section-padding { padding: 24px 20px; }
 
-        /* 장식선 (컬러풀한 그라데이션) */
+        /* 장식선 */
         .divider-elegant {
             width: 2px;
-            height: 40px;
+            height: 24px;
             background: linear-gradient(to bottom, transparent, var(--accent-coral), transparent);
-            margin: 30px auto;
+            margin: 14px auto;
         }
 
         /* 스크롤 페이드 애니메이션 */
@@ -144,7 +159,7 @@
         .premium-card {
             background: #ffffff;
             border-radius: 16px;
-            padding: 24px;
+            padding: 14px;
             box-shadow: 0 12px 30px rgba(247, 127, 114, 0.06);
             border: 1px solid rgba(247, 127, 114, 0.15);
         }
@@ -218,15 +233,15 @@ document.addEventListener('DOMContentLoaded', function () {
         <!-- ==========================================
              1. MAIN COVER (메인 대문)
              ========================================== -->
-        <section class="relative w-full pt-20 pb-16 overflow-hidden flex flex-col items-center">
+        <section class="relative w-full pt-6 pb-2 overflow-hidden flex flex-col items-center">
             
-            <div class="text-center z-10 relative mb-8 fade-up">
-                <h1 class="text-[22px] font-medium text-main mb-4 tracking-[0.2em]">저희 결혼합니다</h1>
-                <p class="text-[13px] text-[var(--accent-coral)] tracking-widest font-medium">멀리 베트남에서 기쁜 소식을 전합니다</p>
+            <div class="text-center z-10 relative mb-3" id="cover-title">
+                <p class="deco-font" id="hw1" style="font-size:34px; font-weight:300; line-height:1.2; color:#332822; letter-spacing:0.12em;"></p>
+                <h1 id="hw2" style="font-size:22px; font-weight:700; letter-spacing:0.28em; color:#332822; margin-top:4px;"></h1>
             </div>
             
             <!-- 화사한 트로피컬 풀컬러 일러스트 -->
-            <div class="w-[88%] max-w-[340px] relative overflow-visible mb-12 fade-up" style="aspect-ratio: 3/4;">
+            <div class="w-[80%] max-w-[290px] relative overflow-visible mb-3 fade-up" style="aspect-ratio: 3/4;">
                 <div class="absolute inset-0 rounded-t-[120px] shadow-[0_20px_50px_rgba(247,127,114,0.15)] overflow-hidden border-4 border-white">
                     <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
                         <defs>
@@ -306,77 +321,41 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
 
             <div class="text-center z-10 flex flex-col items-center w-full px-4 fade-up">
-                <div class="flex items-center justify-center gap-3 mb-5 text-[18px] font-semibold text-main">
-                    <span class="tracking-[0.15em]">석현</span>
-                    <i class="fa-solid fa-heart text-[var(--accent-coral)] text-[12px]"></i>
-                    <span class="tracking-[0.15em] whitespace-nowrap">QUỲNH NHƯ</span>
+                <div class="bg-white px-5 py-1.5 rounded-full shadow-sm border border-[#ffe5e0] mb-1">
+                    <p class="number-font text-[13px] text-[var(--accent-coral)] font-medium tracking-[0.15em]">2026. 06. 14 SUN PM 12:00</p>
                 </div>
-                <div class="bg-white px-5 py-2 rounded-full shadow-sm border border-[#ffe5e0] mb-3">
-                    <p class="number-font text-[14px] text-[var(--accent-coral)] font-medium tracking-[0.15em]">2026. 06. 14 SUN PM 12:00</p>
-                </div>
-                <p class="text-[13px] text-sub tracking-widest font-medium">베트남 부온마투옷</p>
+                <p class="text-[12px] text-sub tracking-widest mb-0">베트남 부온마투옷</p>
             </div>
         </section>
 
         <!-- ==========================================
-             2. GREETING (인사말 & 혼주 정보)
+             2. GREETING (혼주 정보)
              ========================================== -->
-        <section class="section-padding text-center bg-white">
-            <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] mb-10 tracking-[0.3em] fade-up">INVITATION</h2>
-            
-<p class="text-[15px] leading-[2.2] text-main mb-12 font-light fade-up">
-    2023년, 서로를 만나<br>
-    서로가 마주 보며 다져온 사랑을<br>
-    이제 함께 한 곳을 바라보며 걸어가려 합니다.<br><br>
+        <section class="text-center bg-white pt-4 pb-3 px-2">
+            <h2 class="deco-font text-[17px] italic font-light text-[var(--accent-coral)] mb-4 tracking-[0.3em] fade-up">Invitation</h2>
 
-    멀리 베트남에서 예식을 올리게 되어<br>
-    소중한 분들을 직접 모시지 못해<br>
-    죄송한 마음이 큽니다.<br><br>
-
-    저희의 새로운 출발을<br>
-    멀리서나마 마음으로 축복해 주신다면<br>
-    그 따뜻한 마음 잊지 않고<br>
-    예쁘게 잘 살겠습니다.
-</p>
-
-            <!-- 컬러풀한 꽃 장식 -->
-            <div class="w-10 h-10 mx-auto mb-14 fade-up">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M50,10 Q60,30 80,30 Q60,40 50,60 Q40,40 20,30 Q40,30 50,10 Z" fill="var(--accent-yellow)"/>
-                    <path d="M50,40 Q60,50 70,70 Q50,65 30,70 Q40,50 50,40 Z" fill="var(--accent-coral)"/>
-                </svg>
-            </div>
-
-            <!-- 양가 혼주 안내 (중앙 정렬 세로형) -->
+            <!-- 양가 혼주 안내 - 좌우 50:50 -->
             <div class="premium-card fade-up relative overflow-hidden">
-                <!-- 카드 배경 은은한 무늬 -->
-                <div class="absolute -right-10 -top-10 w-32 h-32 bg-[#fff0ed] rounded-full opacity-50"></div>
-                <div class="absolute -left-10 -bottom-10 w-24 h-24 bg-[#f0f9f4] rounded-full opacity-50"></div>
-                
-                <div class="relative z-10 flex flex-col items-center justify-center space-y-10">
-                    
-                    <!-- 신랑측 -->
-                    <div class="flex flex-col items-center text-center w-full">
-                        <span class="text-[12px] text-[var(--accent-green)] font-semibold tracking-[0.2em] mb-4">신랑측 혼주</span>
-                        <div class="flex items-center justify-center gap-3 mb-3">
-                            <span class="font-medium text-[15px] tracking-[0.1em] text-main">최재용</span>
-                            <span class="w-[3px] h-[3px] bg-[#d1c9bd] rounded-full"></span>
-                            <span class="font-medium text-[15px] tracking-[0.1em] text-main">김미옥</span>
-                        </div>
+                <div class="absolute -right-8 -top-8 w-28 h-28 bg-[#fff0ed] rounded-full opacity-40"></div>
+                <div class="absolute -left-8 -bottom-8 w-20 h-20 bg-[#f0f9f4] rounded-full opacity-40"></div>
+
+                <div class="relative z-10 flex items-stretch">
+
+                    <!-- 신랑측 (왼쪽 50%) -->
+                    <div class="flex-1 flex flex-col items-center justify-center text-center pr-2">
+                        <span class="text-[10px] text-[var(--accent-green)] font-bold tracking-[0.1em] mb-1 block">신랑측 혼주</span>
+                        <span class="font-medium text-main block whitespace-nowrap" style="font-size:13px; letter-spacing:0.05em; line-height:1.7;">최재용</span>
+                        <span class="font-medium text-main block whitespace-nowrap" style="font-size:13px; letter-spacing:0.05em; line-height:1.7;">김미옥</span>
                     </div>
 
-                    <!-- 장식선 -->
-                    <div class="w-full flex justify-center">
-                        <div class="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#f77f72] to-transparent opacity-30"></div>
-                    </div>
+                    <!-- 중앙 구분선 -->
+                    <div class="w-px bg-gradient-to-b from-transparent via-[#f0ddd9] to-transparent self-stretch"></div>
 
-                    <!-- 신부측 -->
-                    <div class="flex flex-col items-center text-center w-full">
-                        <span class="text-[12px] text-[var(--accent-coral)] font-semibold tracking-[0.2em] mb-4">신부측 혼주</span>
-                        <div class="flex flex-col items-center justify-center gap-2 mb-3 w-full">
-                            <span class="font-medium tracking-[0.05em] text-main w-full truncate" style="font-size: clamp(12px, 4vw, 15px);">NGUYỄN ĐỨC LAN</span>
-                            <span class="font-medium tracking-[0.05em] text-main w-full truncate" style="font-size: clamp(12px, 4vw, 15px);">NGUYỄN THỊ HỒNG YẾN</span>
-                        </div>
+                    <!-- 신부측 (오른쪽 50%) -->
+                    <div class="flex-1 flex flex-col items-center justify-center text-center pl-2">
+                        <span class="text-[10px] text-[var(--accent-coral)] font-bold tracking-[0.1em] mb-1 block">신부측 혼주</span>
+                        <span class="font-medium text-main block whitespace-nowrap" style="font-size:13px; letter-spacing:0.05em; line-height:1.7;">NGUYỄN ĐỨC LAN</span>
+                        <span class="font-medium text-main block whitespace-nowrap" style="font-size:13px; letter-spacing:0.05em; line-height:1.7;">NGUYỄN THỊ HỒNG YẾN</span>
                     </div>
 
                 </div>
@@ -387,8 +366,8 @@ document.addEventListener('DOMContentLoaded', function () {
              3. GALLERY SECTION (미니 사진첩)
              ========================================== -->
         <section class="section-padding bg-[#fffdfb]" id="gallery">
-            <div class="text-center mb-10 fade-up">
-                <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] tracking-[0.3em]">GALLERY</h2>
+            <div class="text-center mb-4 fade-up">
+                <h2 class="deco-font text-[17px] italic font-light text-[var(--accent-coral)] tracking-[0.3em]">Gallery</h2>
                 <div class="divider-elegant"></div>
             </div>
 
@@ -418,83 +397,82 @@ document.addEventListener('DOMContentLoaded', function () {
         <!-- ==========================================
              4. BANK ACCOUNT & CONTACT (마음 전하실 곳)
              ========================================== -->
-        <section class="section-padding bg-[#fff7f2] text-center pb-28 border-t border-[#ffebe3]">
-            <div class="fade-up">
-                <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] mb-5 tracking-[0.3em]">FOR YOUR HEART</h2>
-                <p class="text-[14px] text-sub mb-10 leading-relaxed font-medium">
-                    참석하지 못하시는 분들을 위해<br>계좌번호를 기재하였습니다.<br>너른 양해 부탁드립니다.
-                </p>
+        <section class="section-padding bg-[#fff7f2] text-center border-t border-[#ffebe3]">
+            <div class="fade-up mb-4">
+                <h2 class="deco-font text-[17px] italic font-light text-[var(--accent-coral)] mb-1 tracking-[0.3em]">For Your Heart</h2>
+                <p class="text-[13px] text-sub">신랑 &amp; 신부에게 마음 전하기</p>
             </div>
 
-            <!-- 신랑측 아버님 계좌 & 연락처 카드 -->
-            <div class="premium-card mb-6 text-left fade-up bg-white">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <span class="text-[12px] font-bold text-[var(--accent-green)] block mb-1 tracking-widest">신랑측 아버님</span>
-                        <span class="text-[17px] font-semibold text-main tracking-widest">최재용</span>
+            <!-- 아버님 / 어머님 좌우 나란히 -->
+            <div class="grid grid-cols-2 gap-2 fade-up">
+
+                        <!-- 아버님 -->
+                        <div class="bg-white rounded-2xl p-3 text-left border border-[#e2efe7] shadow-sm flex flex-col gap-2">
+                            <div>
+                                <span class="text-[10px] font-bold text-[var(--accent-green)] block tracking-widest">아버님</span>
+                                <span class="text-[14px] font-semibold text-main tracking-wide">최재용</span>
+                            </div>
+                            <div class="bg-[#f2f7f4] rounded-xl p-2 border border-[#e2efe7]">
+                                <p class="number-font text-[11px] text-[#2c4c3b] font-medium leading-snug">농협<br>461014-52-161524</p>
+                            </div>
+                            <button onclick="copyAccount('농협 46101452161524')" class="btn-colorful w-full text-[11px] py-1.5 rounded-lg bg-white text-[var(--accent-green)] border border-[#cce0d5] shadow-sm flex items-center justify-center gap-1 font-medium">
+                                <i class="fa-regular fa-copy"></i> 복사
+                            </button>
+                            <div class="flex gap-1.5">
+                                <a href="tel:010-8809-8317" class="flex-1 bg-white text-[var(--accent-green)] border border-[#cce0d5] text-[11px] py-2 rounded-xl text-center btn-colorful flex justify-center items-center gap-1 font-medium shadow-sm">
+                                    <i class="fa-solid fa-phone text-[10px]"></i> 전화
+                                </a>
+                                <a href="sms:010-8809-8317" class="flex-1 bg-[var(--accent-green)] text-white text-[11px] py-2 rounded-xl text-center btn-colorful flex justify-center items-center gap-1 font-medium shadow-sm">
+                                    <i class="fa-solid fa-envelope text-[10px]"></i> 문자
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 어머님 -->
+                        <div class="bg-white rounded-2xl p-3 text-left border border-[#ffe0d9] shadow-sm flex flex-col gap-2">
+                            <div>
+                                <span class="text-[10px] font-bold text-[var(--accent-coral)] block tracking-widest">어머님</span>
+                                <span class="text-[14px] font-semibold text-main tracking-wide">김미옥</span>
+                            </div>
+                            <div class="bg-[#fff0ed] rounded-xl p-2 border border-[#ffe0d9]">
+                                <p class="number-font text-[11px] text-[#6b3026] font-medium leading-snug">국민<br>483925-01-025468</p>
+                            </div>
+                            <button onclick="copyAccount('국민 48392501025468')" class="btn-colorful w-full text-[11px] py-1.5 rounded-lg bg-white text-[var(--accent-coral)] border border-[#ffcdbc] shadow-sm flex items-center justify-center gap-1 font-medium">
+                                <i class="fa-regular fa-copy"></i> 복사
+                            </button>
+                            <div class="flex gap-1.5">
+                                <a href="tel:010-8025-3754" class="flex-1 bg-white text-[var(--accent-coral)] border border-[#ffcdbc] text-[11px] py-2 rounded-xl text-center btn-colorful flex justify-center items-center gap-1 font-medium shadow-sm">
+                                    <i class="fa-solid fa-phone text-[10px]"></i> 전화
+                                </a>
+                                <a href="sms:010-8025-3754" class="flex-1 bg-[var(--accent-coral)] text-white text-[11px] py-2 rounded-xl text-center btn-colorful flex justify-center items-center gap-1 font-medium shadow-sm">
+                                    <i class="fa-solid fa-envelope text-[10px]"></i> 문자
+                                </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                
-                <div class="bg-[#f2f7f4] rounded-xl p-4 mb-5 flex justify-between items-center border border-[#e2efe7]">
-                    <p class="number-font text-[15px] text-[#2c4c3b] tracking-wide font-medium">농협 461014-52-161524</p>
-                    <button onclick="copyAccount('농협 46101452161524')" class="btn-colorful text-[12px] px-3 py-1.5 rounded-lg bg-white text-[var(--accent-green)] border border-[#cce0d5] shadow-sm flex items-center gap-1.5 font-medium">
-                        <i class="fa-regular fa-copy"></i> 복사
-                    </button>
-                </div>
-                
-                <div class="flex gap-3">
-                    <a href="tel:010-8809-8317" class="flex-1 bg-white text-[var(--accent-green)] border border-[#cce0d5] text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
-                        <i class="fa-solid fa-phone"></i> 전화
-                    </a>
-                    <a href="sms:010-8809-8317" class="flex-1 bg-[var(--accent-green)] text-white text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
-                        <i class="fa-solid fa-envelope"></i> 문자
-                    </a>
-                </div>
+
             </div>
 
-            <!-- 신랑측 어머님 계좌 & 연락처 카드 -->
-            <div class="premium-card text-left fade-up bg-white">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <span class="text-[12px] font-bold text-[var(--accent-coral)] block mb-1 tracking-widest">신랑측 어머님</span>
-                        <span class="text-[17px] font-semibold text-main tracking-widest">김미옥</span>
-                    </div>
-                </div>
-                
-                <div class="bg-[#fff0ed] rounded-xl p-4 mb-5 flex justify-between items-center border border-[#ffe0d9]">
-                    <p class="number-font text-[15px] text-[#6b3026] tracking-wide font-medium">국민 483925-01-025468</p>
-                    <button onclick="copyAccount('국민 48392501025468')" class="btn-colorful text-[12px] px-3 py-1.5 rounded-lg bg-white text-[var(--accent-coral)] border border-[#ffcdbc] shadow-sm flex items-center gap-1.5 font-medium">
-                        <i class="fa-regular fa-copy"></i> 복사
-                    </button>
-                </div>
-                
-                <div class="flex gap-3">
-                    <a href="tel:010-8025-3754" class="flex-1 bg-white text-[var(--accent-coral)] border border-[#ffcdbc] text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
-                        <i class="fa-solid fa-phone"></i> 전화
-                    </a>
-                    <a href="sms:010-8025-3754" class="flex-1 bg-[var(--accent-coral)] text-white text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
-                        <i class="fa-solid fa-envelope"></i> 문자
-                    </a>
-                </div>
-            </div>
         </section>
 
         <!-- ==========================================
              5. SHARE (카카오톡 공유)
              ========================================== -->
-        <section class="py-12 bg-white text-center border-t border-[#ffebe3]">
+        <section class="py-8 bg-white text-center border-t border-[#ffebe3]">
             <div class="fade-up">
-                <h2 class="text-[15px] font-semibold text-main mb-6 tracking-widest">청첩장 공유하기</h2>
-                <button onclick="shareMessage()" class="btn-colorful inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-[#3C1E1E] font-semibold text-[15px] shadow-md" style="background-color: #FEE500; width: 80%; max-width: 300px;">
+                <h2 class="deco-font text-[16px] italic font-light text-main mb-4 tracking-widest">Share</h2>
+                <button onclick="shareMessage()" class="btn-colorful inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-[#3C1E1E] font-semibold text-[14px] shadow-md" style="background-color: #FEE500; width: 80%; max-width: 300px;">
                     <i class="fa-solid fa-comment" style="color: #3C1E1E;"></i>
                     카카오톡으로 전송하기
                 </button>
-                <p class="text-[12px] text-gray-400 mt-4">위 버튼을 누르면 카톡으로 예쁘게 전달됩니다.</p>
+                <p class="text-[11px] text-gray-400 mt-3">위 버튼을 누르면 카톡으로 예쁘게 전달됩니다.</p>
             </div>
         </section>
 
         <!-- 푸터 -->
-        <footer class="bg-[#f26f63] py-16 text-center text-white relative overflow-hidden">
+        <footer class="bg-[#f26f63] py-8 text-center text-white relative overflow-hidden">
             <!-- 푸터 배경 꾸밈 -->
             <div class="absolute top-0 left-0 w-full h-full opacity-20">
                 <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
@@ -520,6 +498,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <!-- 스크립트 -->
     <script>
+        // --- 글자별 팝인 애니메이션 ---
+        (function() {
+            function animateChars(el, text, startDelay, charDelay) {
+                el.innerHTML = '';
+                [...text].forEach(function(char, i) {
+                    var span = document.createElement('span');
+                    span.className = 'char-anim';
+                    span.textContent = char === ' ' ? '\u00A0' : char;
+                    span.style.animationDelay = (startDelay + i * charDelay) + 'ms';
+                    el.appendChild(span);
+                });
+                setTimeout(function() {
+                    el.querySelectorAll('.char-anim').forEach(function(s) { s.classList.add('go'); });
+                }, 50);
+            }
+            function startAnim() {
+                var hw1 = document.getElementById('hw1');
+                var hw2 = document.getElementById('hw2');
+                if (!hw1 || !hw2) return;
+                animateChars(hw1, '석현  &  Quỳnh Như', 150, 80);
+                animateChars(hw2, '저희 결혼합니다', 1600, 100);
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', startAnim);
+            } else {
+                startAnim();
+            }
+        })();
+
+        // --- 아코디언 열기/접기 ---
+        function toggleAccordion(id) {
+            const panel = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            if (panel.style.maxHeight && panel.style.maxHeight !== '0px' && panel.style.maxHeight !== '') {
+                panel.style.maxHeight = '0';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
         // --- 1. 스크롤 애니메이션 (Fade-up) ---
         document.addEventListener("DOMContentLoaded", function() {
             const fadeElements = document.querySelectorAll('.fade-up');
