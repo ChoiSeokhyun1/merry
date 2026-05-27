@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- 스마트폰 화면에 딱 맞게 렌더링되도록 하는 필수 메타 태그 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>석현 & QUỲNH NHƯ 결혼합니다</title>
+    
+    <!-- 폰트 및 아이콘 로드 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (디자인 프레임워크) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 커스텀 스타일 -->
+    <style>
+        body {
+            background-color: #f7f6f2; /* 전체 배경색 (연한 베이지) */
+            color: #333333;
+            font-family: 'Noto Serif KR', serif;
+            -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+        }
+        
+        .number-font {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 청첩장 메인 컨테이너 (모바일 화면 비율 유지) */
+        .mobile-container {
+            max-width: 420px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 공통 섹션 패딩 */
+        .section-padding {
+            padding: 60px 24px;
+        }
+
+        /* 장식선 */
+        .divider {
+            width: 1px;
+            height: 40px;
+            background-color: #d1c9bd;
+            margin: 30px auto;
+        }
+
+        /* 버튼 호버 효과 */
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:active {
+            transform: scale(0.97);
+            background-color: #e5dfd6;
+        }
+
+        /* 갤러리 그리드 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        /* 라이트박스 (이미지 확대 뷰어) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        /* 토스트 알림 (계좌번호 복사 완료) */
+        .toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(74, 65, 56, 0.9);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            z-index: 1000;
+            transition: bottom 0.4s ease;
+            font-family: 'Inter', 'Noto Serif KR', sans-serif;
+            white-space: nowrap;
+        }
+        .toast.show {
+            bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        
+        <!-- ==========================================
+             1. MAIN COVER (메인 대문)
+             ========================================== -->
+        <section class="relative w-full bg-[#fcfbf9] pt-16 pb-12 overflow-hidden flex flex-col items-center">
+            <div class="text-center z-10 relative mb-8">
+                <h1 class="text-2xl font-medium text-[#4a4138] mb-4 tracking-widest">저희 결혼합니다</h1>
+                <p class="text-sm text-[#8c8275] tracking-widest">멀리 베트남에서 기쁜 소식을 전합니다</p>
+            </div>
+            
+            <!-- 고급스러운 노을 & 야외 웨딩 아치 일러스트 (SVG) -->
+            <div class="w-[90%] max-w-[340px] relative rounded-t-full overflow-hidden mb-8 bg-[#e8eae3]" style="aspect-ratio: 3/4; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
+                    <!-- 하늘 배경 (노을) -->
+                    <defs>
+                        <linearGradient id="sunset" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#fcd8ba" />
+                            <stop offset="40%" stop-color="#fce8d5" />
+                            <stop offset="100%" stop-color="#e8eae3" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="300" height="400" fill="url(#sunset)" />
+                    <!-- 태양 -->
+                    <circle cx="150" cy="180" r="25" fill="#ffffff" opacity="0.8" />
+                    <!-- 바다 -->
+                    <rect x="0" y="200" width="300" height="200" fill="#a4c3c3" opacity="0.4" />
+                    <!-- 야자수 실루엣 -->
+                    <path d="M 40,250 Q 50,150 20,100 M 20,100 Q 40,110 50,120 M 20,100 Q 10,120 15,130 M 260,260 Q 250,160 280,110 M 280,110 Q 260,120 250,130 M 280,110 Q 290,130 285,140" stroke="#7a8c7b" stroke-width="4" fill="none" opacity="0.6"/>
+                    <!-- 웨딩 아치 -->
+                    <path d="M 50,300 C 50,100 250,100 250,300" stroke="#b09b7d" stroke-width="8" fill="none" />
+                    <!-- 아치 장식 (꽃과 나뭇잎) -->
+                    <circle cx="60" cy="250" r="15" fill="#f4a298" />
+                    <circle cx="240" cy="220" r="18" fill="#f4a298" />
+                    <circle cx="90" cy="150" r="12" fill="#ffffff" />
+                    <circle cx="210" cy="130" r="14" fill="#ffffff" />
+                    <path d="M 50,300 Q 30,250 10,280 M 250,300 Q 270,260 290,280" stroke="#68805f" stroke-width="6" fill="none" />
+                    <!-- 신랑 신부 실루엣 -->
+                    <path d="M 120,400 L 120,290 C 120,270 140,270 140,290 L 140,400 Z" fill="#36454f" />
+                    <path d="M 160,400 L 160,300 C 160,280 180,280 180,300 L 180,400 Z" fill="#ffffff" />
+                    <!-- 부케 -->
+                    <circle cx="170" cy="320" r="10" fill="#f4a298" />
+                </svg>
+            </div>
+
+            <div class="text-center z-10 flex flex-col items-center w-full px-4">
+                <div class="flex items-center justify-center gap-3 mb-3 text-[17px] font-medium text-[#4a4138]">
+                    <span class="tracking-widest">박석현</span>
+                    <i class="fa-solid fa-heart text-[#d4b99f] text-[10px]"></i>
+                    <span class="tracking-widest whitespace-nowrap" style="font-size: clamp(14px, 4vw, 17px);">QUỲNH NHƯ</span>
+                </div>
+                <p class="number-font text-[13px] text-[#8c8275] tracking-[0.1em] mb-2">2026. 05. 30 SAT PM 6:00</p>
+                <p class="text-[12px] text-[#8c8275] tracking-widest">베트남 호이안 아난타라 리조트 비치 가든</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             2. GREETING (인사말 & 혼주 정보)
+             ========================================== -->
+        <section class="section-padding text-center bg-white">
+            <h2 class="text-lg font-medium text-[#4a4138] mb-8 tracking-widest">초대합니다</h2>
+            
+            <p class="text-[14px] leading-loose text-[#555555] mb-12">
+                서로가 마주 보며 다져온 사랑을<br>
+                이제 함께 한 곳을 바라보며 걸어가려 합니다.<br><br>
+                멀리 베트남에서 예식을 올리게 되어<br>
+                소중한 분들을 직접 모시지 못해<br>
+                죄송한 마음이 큽니다.<br><br>
+                저희의 새로운 출발을<br>
+                멀리서나마 마음으로 축복해 주신다면<br>
+                그 따뜻한 마음 잊지 않고<br>
+                예쁘게 잘 살겠습니다.
+            </p>
+
+            <!-- 감성적인 트로피컬 나뭇잎 일러스트 (중간 장식) -->
+            <div class="w-16 h-16 mx-auto mb-12">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50,90 C50,90 20,70 20,40 C20,20 40,10 50,25 C60,10 80,20 80,40 C80,70 50,90 50,90 Z" fill="none" stroke="#d4b99f" stroke-width="2"/>
+                    <path d="M50,90 L50,25" fill="none" stroke="#d4b99f" stroke-width="1.5"/>
+                    <path d="M50,60 L35,45 M50,75 L65,60 M50,45 L40,35" fill="none" stroke="#d4b99f" stroke-width="1.5"/>
+                </svg>
+            </div>
+
+            <!-- 양가 혼주 및 신랑 신부 안내 (세로형 완벽 정렬) -->
+            <div class="bg-[#fbfaf8] py-8 px-4 rounded-xl border border-[#f0ece5]">
+                <div class="flex flex-col items-center justify-center space-y-7">
+                    
+                    <!-- 신랑측 -->
+                    <div class="flex flex-col items-center text-center w-full">
+                        <span class="text-[11px] text-[#d4b99f] font-semibold tracking-widest mb-2">신랑측 혼주</span>
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="text-[16px] font-medium text-[#4a4138] tracking-widest">최재용</span>
+                            <span class="text-[13px] text-[#8c8275]">의 아들</span>
+                            <span class="text-[17px] font-semibold text-[#4a4138] tracking-widest">석현</span>
+                        </div>
+                    </div>
+
+                    <!-- 장식선 -->
+                    <div class="w-16 h-[1px] bg-[#e5dfd6]"></div>
+
+                    <!-- 신부측 -->
+                    <div class="flex flex-col items-center text-center w-full">
+                        <span class="text-[11px] text-[#d4b99f] font-semibold tracking-widest mb-2">신부측 혼주</span>
+                        <div class="flex flex-col items-center justify-center gap-1 w-full mb-2">
+                            <span class="font-medium text-[#4a4138] tracking-widest whitespace-nowrap" style="font-size: clamp(13px, 3.8vw, 16px);">NGUYỄN ĐỨC LAN</span>
+                            <span class="font-medium text-[#4a4138] tracking-widest whitespace-nowrap" style="font-size: clamp(13px, 3.8vw, 16px);">NGUYỄN THỊ HỒNG YẾN</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-3 mt-1">
+                            <span class="text-[13px] text-[#8c8275]">의 딸</span>
+                            <span class="font-semibold text-[#4a4138] tracking-widest whitespace-nowrap" style="font-size: clamp(14px, 4vw, 17px);">QUỲNH NHƯ</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. GALLERY SECTION (미니 사진첩)
+             ========================================== -->
+        <section class="section-padding bg-[#fcfbf9]" id="gallery">
+            <div class="text-center mb-8">
+                <h2 class="text-lg font-medium text-[#4a4138] tracking-widest">저희의 순간</h2>
+                <div class="divider"></div>
+                <p class="text-[13px] text-[#8c8275]">사진을 누르면 크게 보실 수 있습니다.</p>
+            </div>
+
+            <!-- 서버 경로에 맞춘 이미지 갤러리 -->
+            <div class="gallery-grid rounded-lg overflow-hidden shadow-sm">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="photo1.jpg" alt="웨딩 사진 1" onerror="this.src='https://placehold.co/400x400/e8eae3/8c8275?text=Photo+1'">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="photo2.jpg" alt="웨딩 사진 2" onerror="this.src='https://placehold.co/400x400/e8eae3/8c8275?text=Photo+2'">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="photo3.jpg" alt="웨딩 사진 3" onerror="this.src='https://placehold.co/400x400/e8eae3/8c8275?text=Photo+3'">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. BANK ACCOUNT & CONTACT (마음 전하실 곳)
+             ========================================== -->
+        <section class="section-padding bg-white text-center pb-24">
+            <h2 class="text-lg font-medium text-[#4a4138] mb-4 tracking-widest">마음 전하실 곳</h2>
+            <p class="text-[13px] text-[#8c8275] mb-8 leading-relaxed">
+                참석하지 못하시는 분들을 위해<br>계좌번호를 기재하였습니다.<br>너른 양해 부탁드립니다.
+            </p>
+
+            <!-- 신랑측 아버님 계좌 & 연락처 카드 -->
+            <div class="bg-[#fbfaf8] border border-[#eee] rounded-xl p-5 mb-5 shadow-sm text-left">
+                <div class="flex justify-between items-end mb-3">
+                    <div>
+                        <span class="text-[12px] font-semibold text-[#8c8275] block mb-1">신랑측 혼주 (아버지)</span>
+                        <span class="text-[15px] font-medium text-[#333]">최재용</span>
+                    </div>
+                    <button onclick="copyAccount('농협 46101452161524')" class="btn-hover bg-[#e5dfd6] text-[#4a4138] text-[12px] px-3 py-1.5 rounded-full font-medium">
+                        계좌 복사
+                    </button>
+                </div>
+                <div class="bg-white rounded p-3 mb-4 border border-[#f0ece5]">
+                    <p class="number-font text-[14px] text-[#555] tracking-wide">농협 461014-52-161524</p>
+                </div>
+                
+                <!-- 아버님 연락처 버튼 -->
+                <div class="flex gap-2">
+                    <a href="tel:010-8809-8317" class="flex-1 bg-white border border-[#d1c9bd] text-[#4a4138] text-[13px] py-2.5 rounded-lg text-center btn-hover flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-phone text-[11px]"></i> 전화하기
+                    </a>
+                    <a href="sms:010-8809-8317" class="flex-1 bg-white border border-[#d1c9bd] text-[#4a4138] text-[13px] py-2.5 rounded-lg text-center btn-hover flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-envelope text-[11px]"></i> 문자하기
+                    </a>
+                </div>
+            </div>
+
+            <!-- 신랑측 어머님 계좌 & 연락처 카드 -->
+            <div class="bg-[#fbfaf8] border border-[#eee] rounded-xl p-5 shadow-sm text-left">
+                <div class="flex justify-between items-end mb-3">
+                    <div>
+                        <span class="text-[12px] font-semibold text-[#8c8275] block mb-1">신랑측 혼주 (어머니)</span>
+                        <span class="text-[15px] font-medium text-[#333]">김미옥</span>
+                    </div>
+                    <button onclick="copyAccount('국민 48392501025468')" class="btn-hover bg-[#e5dfd6] text-[#4a4138] text-[12px] px-3 py-1.5 rounded-full font-medium">
+                        계좌 복사
+                    </button>
+                </div>
+                <div class="bg-white rounded p-3 mb-4 border border-[#f0ece5]">
+                    <p class="number-font text-[14px] text-[#555] tracking-wide">국민 483925-01-025468</p>
+                </div>
+                
+                <!-- 어머님 연락처 버튼 -->
+                <div class="flex gap-2">
+                    <a href="tel:010-8025-3754" class="flex-1 bg-white border border-[#d1c9bd] text-[#4a4138] text-[13px] py-2.5 rounded-lg text-center btn-hover flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-phone text-[11px]"></i> 전화하기
+                    </a>
+                    <a href="sms:010-8025-3754" class="flex-1 bg-white border border-[#d1c9bd] text-[#4a4138] text-[13px] py-2.5 rounded-lg text-center btn-hover flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-envelope text-[11px]"></i> 문자하기
+                    </a>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="bg-[#e5dfd6] py-10 text-center text-[#8c8275]">
+            <p class="text-[16px] font-medium tracking-[0.2em] mb-2">S & Q</p>
+            <p class="text-[11px]">Thank you for your blessing.</p>
+        </footer>
+
+        <!-- 이미지 라이트박스 컨테이너 -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="확대된 사진">
+        </div>
+
+        <!-- 복사 완료 토스트 메시지 -->
+        <div id="toast" class="toast">계좌번호가 복사되었습니다.</div>
+
+    </div>
+
+    <!-- 스크립트 -->
+    <script>
+        // --- 1. 계좌번호 복사 및 토스트 알림 기능 ---
+        function copyAccount(text) {
+            // 숫자만 추출 (하이픈 등 제거)
+            const cleanText = text.replace(/[^0-9]/g, '');
+            
+            // 클립보드에 복사
+            const textArea = document.createElement("textarea");
+            textArea.value = cleanText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('복사 실패', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
+        }
+
+        // --- 2. 사진 갤러리 확대 기능 (라이트박스) ---
+        // 파일 이름을 정확히 매칭 (github 업로드 시 사용)
+        const images = [
+            "photo1.jpg",
+            "photo2.jpg",
+            "photo3.jpg"
+        ];
+
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+
+        function openLightbox(index) {
+            lightboxImg.src = images[index];
+            lightbox.classList.add("active");
+            document.body.style.overflow = "hidden"; // 배경 스크롤 방지
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove("active");
+            document.body.style.overflow = "auto"; // 배경 스크롤 원복
+        }
+
+        // 라이트박스 바깥 영역 클릭 시 닫기
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
