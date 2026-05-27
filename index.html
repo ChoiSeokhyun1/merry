@@ -177,6 +177,42 @@
     </style>
 </head>
 <body>
+
+    <!-- =========================
+     BGM 자동재생
+========================= -->
+<audio id="bgm" autoplay loop playsinline>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const bgm = document.getElementById('bgm');
+
+    if (!Kakao.isInitialized()) {
+        Kakao.init('f8aa2731ec3ff22737662b385f85dad6');
+    }
+
+    // 자동재생 시도
+    bgm.volume = 0.5;
+
+    bgm.play().catch(() => {
+
+        // 모바일 차단 시 첫 터치에 재생
+        const enableAudio = () => {
+            bgm.play();
+            document.removeEventListener('click', enableAudio);
+            document.removeEventListener('touchstart', enableAudio);
+        };
+
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
+    });
+
+});
+</script>
+
     <div class="mobile-container">
         
         <!-- ==========================================
@@ -288,17 +324,20 @@
         <section class="section-padding text-center bg-white">
             <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] mb-10 tracking-[0.3em] fade-up">INVITATION</h2>
             
-            <p class="text-[15px] leading-[2.2] text-main mb-12 font-light fade-up">
-                서로가 마주 보며 다져온 사랑을<br>
-                이제 함께 한 곳을 바라보며 걸어가려 합니다.<br><br>
-                멀리 베트남에서 예식을 올리게 되어<br>
-                소중한 분들을 직접 모시지 못해<br>
-                죄송한 마음이 큽니다.<br><br>
-                저희의 새로운 출발을<br>
-                멀리서나마 마음으로 축복해 주신다면<br>
-                그 따뜻한 마음 잊지 않고<br>
-                예쁘게 잘 살겠습니다.
-            </p>
+<p class="text-[15px] leading-[2.2] text-main mb-12 font-light fade-up">
+    2023년, 서로를 만나<br>
+    서로가 마주 보며 다져온 사랑을<br>
+    이제 함께 한 곳을 바라보며 걸어가려 합니다.<br><br>
+
+    멀리 베트남에서 예식을 올리게 되어<br>
+    소중한 분들을 직접 모시지 못해<br>
+    죄송한 마음이 큽니다.<br><br>
+
+    저희의 새로운 출발을<br>
+    멀리서나마 마음으로 축복해 주신다면<br>
+    그 따뜻한 마음 잊지 않고<br>
+    예쁘게 잘 살겠습니다.
+</p>
 
             <!-- 컬러풀한 꽃 장식 -->
             <div class="w-10 h-10 mx-auto mb-14 fade-up">
@@ -363,6 +402,15 @@
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)">
                     <img src="photo3.jpg" alt="웨딩 사진 3" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+3'">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="photo4.jpg" alt="웨딩 사진 4" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+4'">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="photo5.jpg" alt="웨딩 사진 5" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+5'">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="photo6.jpg" alt="웨딩 사진 6" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+6'">
                 </div>
             </div>
         </section>
@@ -522,7 +570,10 @@
         const images = [
             "photo1.jpg",
             "photo2.jpg",
-            "photo3.jpg"
+            "photo3.jpg",
+            "photo4.jpg",
+            "photo5.jpg",
+            "photo6.jpg"
         ];
 
         const lightbox = document.getElementById("lightbox");
