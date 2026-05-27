@@ -241,82 +241,16 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>
             
             <!-- 화사한 트로피컬 풀컬러 일러스트 -->
-            <div class="w-[80%] max-w-[290px] relative overflow-visible mb-3 fade-up" style="aspect-ratio: 3/4;">
-                <div class="absolute inset-0 rounded-t-[120px] shadow-[0_20px_50px_rgba(247,127,114,0.15)] overflow-hidden border-4 border-white">
-                    <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
-                        <defs>
-                            <!-- 화사한 노을/하늘 배경 -->
-                            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#ffdfd3" />
-                                <stop offset="40%" stop-color="#fff0e5" />
-                                <stop offset="100%" stop-color="#e2f0cb" />
-                            </linearGradient>
-                            <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
-                                <stop offset="0%" stop-color="#ffd54f" stop-opacity="1"/>
-                                <stop offset="100%" stop-color="#ffb300" stop-opacity="0"/>
-                            </radialGradient>
-                        </defs>
-                        <!-- 배경 -->
-                        <rect width="300" height="400" fill="url(#skyGradient)" />
-                        
-                        <!-- 빛나는 태양 -->
-                        <circle cx="150" cy="180" r="80" fill="url(#sunGradient)" class="sun-element"/>
-                        <circle cx="150" cy="180" r="30" fill="#ffffff" opacity="0.8"/>
+            <div class="w-[92%] max-w-[360px] relative overflow-visible mb-4 fade-up" style="aspect-ratio: 4/5;">
 
-                        <!-- 바다/언덕 라인 -->
-                        <path d="M 0,280 Q 75,260 150,290 T 300,270 L 300,400 L 0,400 Z" fill="#c5e1a5" opacity="0.6"/>
-                        <path d="M 0,320 Q 100,290 200,330 T 300,310 L 300,400 L 0,400 Z" fill="#aed581" opacity="0.8"/>
-                        
-                        <!-- 웨딩 아치 (Wedding Arch) -->
-                        <path d="M 60,340 C 60,110 240,110 240,340" fill="none" stroke="#d4af37" stroke-width="3" stroke-dasharray="8 6" class="floating-element"/>
-                        <path d="M 45,340 C 45,90 255,90 255,340" fill="none" stroke="#f8c058" stroke-width="1.5" opacity="0.7" class="floating-element"/>
+                <!-- 그라데이션 테두리 효과 (바깥 레이어) -->
+                <div class="absolute inset-0 rounded-t-[133px]" style="z-index:0; padding:3px; background: linear-gradient(160deg, #f8c058, #f77f72, #f48fb1, #f77f72, #f8c058); box-shadow: 0 0 30px rgba(247,127,114,0.45), 0 0 60px rgba(247,127,114,0.2);">
+                    <div class="w-full h-full rounded-t-[131px] bg-white"></div>
+                </div>
 
-                        <!-- 신랑 신부 실루엣 (Wedding Couple) -->
-                        <g class="fade-up" style="animation-delay: 0.5s;">
-                            <!-- 신랑 -->
-                            <circle cx="125" cy="225" r="9" fill="#4a3f35"/>
-                            <path d="M 115,245 C 115,235 135,235 135,245 L 140,340 L 110,340 Z" fill="#4a3f35"/>
-                            <!-- 신부 (풍성한 드레스와 베일) -->
-                            <circle cx="160" cy="235" r="8" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
-                            <path d="M 160,245 C 175,255 185,290 185,340 L 135,340 C 135,290 145,255 150,245 Z" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
-                            <path d="M 160,235 C 175,235 182,260 182,290 C 182,300 165,270 160,235 Z" fill="#ffffff" opacity="0.7"/> 
-                            <!-- 신부가 든 코랄빛 부케 -->
-                            <circle cx="142" cy="265" r="8" fill="#ff7043"/>
-                            <circle cx="148" cy="260" r="5" fill="#f48fb1"/>
-                            <circle cx="138" cy="258" r="4" fill="#fce4ec"/>
-                        </g>
-
-                        <!-- 아치 중앙 상단 장식 꽃 -->
-                        <g class="floating-element" style="animation-delay: -1s;">
-                            <circle cx="150" cy="98" r="14" fill="#ff7043"/>
-                            <circle cx="150" cy="98" r="6" fill="#ffccbc"/>
-                            <circle cx="125" cy="108" r="10" fill="#f8c058"/>
-                            <circle cx="175" cy="108" r="10" fill="#f48fb1"/>
-                        </g>
-
-                        <!-- 컬러풀한 트로피컬 식물 장식 (왼쪽) -->
-                        <g class="floating-element">
-                            <path d="M -20,420 Q 30,300 120,280 Q 60,330 30,420 Z" fill="#558b2f"/>
-                            <path d="M 0,400 Q 50,250 140,200 Q 90,290 40,400 Z" fill="#7cb342" opacity="0.9"/>
-                            <circle cx="70" cy="300" r="18" fill="#ff7043"/>
-                            <circle cx="70" cy="300" r="8" fill="#ffccbc"/>
-                            <circle cx="40" cy="240" r="15" fill="#f48fb1"/>
-                        </g>
-
-                        <!-- 컬러풀한 트로피컬 식물 장식 (오른쪽) -->
-                        <g class="floating-element" style="animation-delay: -3s;">
-                            <path d="M 320,420 Q 270,300 180,280 Q 240,330 270,420 Z" fill="#558b2f"/>
-                            <path d="M 300,400 Q 250,250 160,200 Q 210,290 260,400 Z" fill="#7cb342" opacity="0.9"/>
-                            <circle cx="230" cy="300" r="20" fill="#ff7043"/>
-                            <circle cx="230" cy="300" r="10" fill="#ffccbc"/>
-                            <circle cx="260" cy="230" r="14" fill="#f8c058"/>
-                        </g>
-                        
-                        <!-- 금빛 흩날리는 조각들 -->
-                        <circle cx="100" cy="150" r="2" fill="#ffb300" class="floating-element"/>
-                        <circle cx="220" cy="120" r="3" fill="#ffb300" class="floating-element" style="animation-delay: -1s;"/>
-                        <circle cx="180" cy="130" r="2" fill="#ffffff" class="floating-element" style="animation-delay: -2s;"/>
-                    </svg>
+                <!-- 아치 사진 프레임 -->
+                <div class="absolute rounded-t-[128px] overflow-hidden" style="inset:6px; z-index:1;">
+                    <img src="photo2.jpg" alt="웨딩 사진" style="width:100%; height:100%; object-fit:cover; object-position:center top;">
                 </div>
             </div>
 
