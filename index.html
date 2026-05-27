@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>석현 ♥ QUỲNH NHƯ 결혼합니다</title>
-    
-    <!-- 카카오톡 미리보기 (Open Graph) -->
+    <title>석현 & QUỲNH NHƯ 결혼합니다</title>
+
+    <!-- 카카오톡 링크 공유 미리보기 (Open Graph) 설정 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ChoiSeokhyun1.github.io/merry/">
     <meta property="og:title" content="최석현 ♥ NGUYỄN SONG QUỲNH NHƯ 결혼합니다">
     <meta property="og:description" content="2026년 06월 14일, 멀리 베트남에서 기쁜 소식을 전합니다.">
-    <!-- 썸네일 이미지: 깃허브에 올라갈 대표 사진 (photo1.jpg) -->
+    <!-- 카톡에 뜰 썸네일 이미지 (photo1.jpg 사진이 뜹니다) -->
     <meta property="og:image" content="https://ChoiSeokhyun1.github.io/merry/photo1.jpg">
-    <meta property="og:url" content="https://ChoiSeokhyun1.github.io/merry/">
-    <meta property="og:type" content="website">
-
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="400">
+    
+    <!-- 폰트 로드: Noto Serif (명조) & Inter (고딕/숫자용) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,400 +29,373 @@
     
     <style>
         :root {
-            --bg-color: #fffaf6;
-            --text-main: #3C1E1E;
-            --accent-coral: #FF7B72;
-            --accent-green: #3E7B5A;
-            --gold-light: #E8D3B9;
+            /* 화사하고 밝은 색상표로 전면 교체 */
+            --bg-color: #fffdfb;
+            --text-main: #332822;
+            --text-sub: #7a6a61;
+            --accent-coral: #f77f72; /* 메인 포인트 컬러 (코랄 핑크) */
+            --accent-green: #5a8e70; /* 식물 느낌의 초록 */
+            --accent-yellow: #f8c058; /* 따뜻한 노랑 */
+            --card-bg: #ffffff;
         }
 
         body {
-            font-family: 'Noto Serif KR', serif;
-            background-color: #f7f7f7;
+            background-color: #ffefe8; /* 바깥 배경색도 화사한 피치톤으로 */
             color: var(--text-main);
-            line-height: 1.8;
+            font-family: 'Noto Serif KR', serif;
             -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+            line-height: 1.8;
         }
+        
+        .number-font { font-family: 'Inter', sans-serif; }
 
+        /* 청첩장 메인 컨테이너 (화사한 그라데이션) */
         .mobile-container {
-            max-width: 480px;
+            max-width: 420px;
             margin: 0 auto;
-            background-color: var(--bg-color);
+            background: linear-gradient(180deg, #fff7f2 0%, #ffffff 15%, #ffffff 85%, #fff9f5 100%);
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 40px rgba(247, 127, 114, 0.15); /* 그림자도 코랄빛으로 */
             overflow-x: hidden;
             position: relative;
         }
 
-        /* 스크롤 애니메이션 */
+        .section-padding { padding: 80px 24px; }
+
+        /* 장식선 (컬러풀한 그라데이션) */
+        .divider-elegant {
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--accent-coral), transparent);
+            margin: 30px auto;
+        }
+
+        /* 스크롤 페이드 애니메이션 */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 메인 대문 일러스트 배경 */
-        .hero-section {
-            background: linear-gradient(180deg, #E6F3FB 0%, #FFF2E6 40%, #FFFDFB 100%);
-            position: relative;
-            padding-top: 40px;
-            padding-bottom: 20px;
-            text-align: center;
+        /* 일러스트 미세한 호흡 애니메이션 */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-6px) rotate(1deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
-
-        /* SVG 아트워크 컨테이너 */
-        .svg-artwork {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin: 20px auto;
+        .floating-element { animation: float 6s ease-in-out infinite; }
+        
+        @keyframes pulse-sun {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
         }
+        .sun-element { animation: pulse-sun 4s ease-in-out infinite; transform-origin: center; }
 
-        /* 텍스트 스타일 */
-        .hero-title {
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-        .hero-subtitle {
-            font-size: 13px;
-            color: #7A6352;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .names-wrap {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .names-wrap span {
-            color: var(--accent-coral);
-            margin: 0 8px;
-            font-size: 14px;
-        }
-
-        .wedding-info {
-            font-size: 12.5px;
-            color: #8c8275;
-            margin-top: 15px;
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.5px;
-            line-height: 1.6;
-        }
-
-        .section-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--accent-green);
-            text-align: center;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-        }
-
-        .divider {
-            width: 1px;
-            height: 40px;
-            background-color: var(--gold-light);
-            margin: 30px auto;
-        }
-
-        /* 혼주명 세로 레이아웃 */
-        .family-section {
-            padding: 50px 20px;
-            background-color: white;
-            text-align: center;
-        }
-
-        .family-group {
-            margin-bottom: 40px;
-        }
-
-        .family-label {
-            font-size: 12px;
-            color: var(--accent-coral);
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .family-name {
-            font-size: clamp(14px, 4vw, 16px);
-            font-weight: 500;
-            color: var(--text-main);
-            letter-spacing: 1px;
-            white-space: nowrap;
-        }
-
-        .family-name-small {
-            font-size: clamp(12px, 3.5vw, 14px);
-            color: #666;
-            margin-top: 4px;
-            white-space: nowrap;
-        }
-
-        /* 갤러리 */
-        .gallery-section {
-            padding: 50px 20px;
-            background-color: #fcfcfc;
-            text-align: center;
-        }
-
+        /* 갤러리 그리드 */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            margin-top: 20px;
+            gap: 6px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(247, 127, 114, 0.1);
         }
-
         .gallery-item {
             aspect-ratio: 1 / 1;
             overflow: hidden;
-            border-radius: 4px;
+            background-color: #ffeae6;
             cursor: pointer;
+            position: relative;
         }
-
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
+        .gallery-item:hover img { transform: scale(1.05); }
 
-        /* 라이트박스 (갤러리 확대) */
+        /* 라이트박스 */
         .lightbox {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .lightbox.active { display: flex; }
-        .lightbox img {
-            max-width: 95%; max-height: 80vh;
-            object-fit: contain;
-        }
-        .close-btn {
-            position: absolute; top: 20px; right: 20px;
-            color: white; font-size: 30px; cursor: pointer;
-            z-index: 1001;
-        }
-
-        /* 계좌 및 연락처 통합 카드 */
-        .account-card {
-            background-color: white;
-            border: 1px solid #ffebe3;
-            border-radius: 16px;
-            padding: 24px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(255, 123, 114, 0.05);
-            text-align: left;
-        }
-
-        .bank-info-wrap {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .copy-btn {
-            background-color: #f8f8f8;
-            color: #555;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        /* 통통 튀는 버튼 스타일 */
-        .btn-colorful {
-            transition: all 0.2s;
-        }
-        .btn-colorful:active {
-            transform: scale(0.96);
-        }
-
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: rgba(60, 30, 30, 0.9);
-            color: #fff;
-            text-align: center;
-            border-radius: 30px;
-            padding: 12px 20px;
-            position: fixed;
+            background-color: rgba(20, 15, 10, 0.95);
             z-index: 9999;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-size: 14px;
+            justify-content: center; align-items: center;
             opacity: 0;
-            transition: opacity 0.3s, visibility 0.3s;
+            transition: opacity 0.4s ease;
         }
-        #toast.show {
-            visibility: visible;
-            opacity: 1;
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox img { max-width: 95%; max-height: 85vh; object-fit: contain; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .lightbox-close {
+            position: absolute; top: 25px; right: 25px;
+            color: white; font-size: 35px; font-weight: 300;
+            cursor: pointer; z-index: 10000;
         }
+
+        /* 화사한 프리미엄 카드 UI */
+        .premium-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 12px 30px rgba(247, 127, 114, 0.06);
+            border: 1px solid rgba(247, 127, 114, 0.15);
+        }
+        
+        /* 버튼 호버 효과 (컬러풀) */
+        .btn-colorful {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-colorful:active { transform: scale(0.96); }
+
+        /* 토스트 알림 (코랄 테마) */
+        .toast {
+            position: fixed;
+            bottom: -60px; left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-coral);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1000;
+            transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-family: 'Inter', 'Noto Serif KR', sans-serif;
+            box-shadow: 0 10px 20px rgba(247, 127, 114, 0.3);
+        }
+        .toast.show { bottom: 50px; }
     </style>
 </head>
 <body>
     <div class="mobile-container">
+        
         <!-- ==========================================
-             1. HERO SECTION (대문 - 트로피컬 일러스트 & 웨딩 아치)
+             1. MAIN COVER (메인 대문)
              ========================================== -->
-        <header class="hero-section">
-            <h1 class="hero-title fade-up">저희 결혼합니다</h1>
-            <p class="hero-subtitle fade-up" style="transition-delay: 0.2s;">멀리 베트남에서 기쁜 소식을 전합니다</p>
+        <section class="relative w-full pt-20 pb-16 overflow-hidden flex flex-col items-center">
             
-            <!-- 코랄&그린 트로피컬 웨딩 아치 SVG -->
-            <div class="fade-up" style="transition-delay: 0.4s;">
-                <svg class="svg-artwork" viewBox="0 0 400 450" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#FFD166" stop-opacity="0.8"/>
-                            <stop offset="100%" stop-color="#FF9F1C" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
-                    <!-- 태양 -->
-                    <circle cx="200" cy="200" r="120" fill="url(#sunGrad)" />
-                    <!-- 뒤쪽 열대 식물 -->
-                    <path d="M50 350 C80 250, 100 200, 150 250 C120 280, 80 300, 50 350 Z" fill="#95D5B2" opacity="0.6"/>
-                    <path d="M350 360 C320 260, 280 220, 240 270 C270 290, 310 320, 350 360 Z" fill="#95D5B2" opacity="0.6"/>
-                    
-                    <!-- 웨딩 아치 (골드) -->
-                    <path d="M100 400 L100 200 A100 100 0 0 1 300 200 L300 400" fill="none" stroke="#D4AF37" stroke-width="6" stroke-linecap="round"/>
-                    
-                    <!-- 아치 장식 (코랄 플라워 & 잎사귀) -->
-                    <!-- 좌측 장식 -->
-                    <circle cx="100" cy="200" r="15" fill="#FF7B72"/>
-                    <circle cx="90" cy="185" r="10" fill="#FFA099"/>
-                    <circle cx="115" cy="190" r="12" fill="#FFA099"/>
-                    <path d="M100 200 Q70 220 80 260 Q90 230 100 200" fill="#3E7B5A"/>
-                    <!-- 우측 장식 -->
-                    <circle cx="300" cy="150" r="18" fill="#FF7B72"/>
-                    <circle cx="285" cy="135" r="12" fill="#FFA099"/>
-                    <circle cx="315" cy="140" r="14" fill="#FFA099"/>
-                    <path d="M300 150 Q330 170 320 210 Q310 180 300 150" fill="#3E7B5A"/>
-                    <!-- 중앙 상단 장식 -->
-                    <circle cx="200" cy="100" r="20" fill="#FF7B72"/>
-                    <path d="M200 100 Q180 80 150 90 Q170 100 200 100" fill="#3E7B5A"/>
-                    <path d="M200 100 Q220 80 250 90 Q230 100 200 100" fill="#3E7B5A"/>
+            <div class="text-center z-10 relative mb-8 fade-up">
+                <h1 class="text-[22px] font-medium text-main mb-4 tracking-[0.2em]">저희 결혼합니다</h1>
+                <p class="text-[13px] text-[var(--accent-coral)] tracking-widest font-medium">멀리 베트남에서 기쁜 소식을 전합니다</p>
+            </div>
+            
+            <!-- 화사한 트로피컬 풀컬러 일러스트 -->
+            <div class="w-[88%] max-w-[340px] relative overflow-visible mb-12 fade-up" style="aspect-ratio: 3/4;">
+                <div class="absolute inset-0 rounded-t-[120px] shadow-[0_20px_50px_rgba(247,127,114,0.15)] overflow-hidden border-4 border-white">
+                    <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full object-cover">
+                        <defs>
+                            <!-- 화사한 노을/하늘 배경 -->
+                            <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#ffdfd3" />
+                                <stop offset="40%" stop-color="#fff0e5" />
+                                <stop offset="100%" stop-color="#e2f0cb" />
+                            </linearGradient>
+                            <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#ffd54f" stop-opacity="1"/>
+                                <stop offset="100%" stop-color="#ffb300" stop-opacity="0"/>
+                            </radialGradient>
+                        </defs>
+                        <!-- 배경 -->
+                        <rect width="300" height="400" fill="url(#skyGradient)" />
+                        
+                        <!-- 빛나는 태양 -->
+                        <circle cx="150" cy="180" r="80" fill="url(#sunGradient)" class="sun-element"/>
+                        <circle cx="150" cy="180" r="30" fill="#ffffff" opacity="0.8"/>
 
-                    <!-- 신랑 신부 실루엣 -->
-                    <!-- 신부 (드레스 & 부케) -->
-                    <path d="M210 400 C210 320, 200 280, 225 250 C235 240, 245 240, 250 250 C250 280, 270 340, 280 400 Z" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
-                    <circle cx="235" cy="225" r="12" fill="#3C1E1E"/> <!-- 신부 머리 -->
-                    <circle cx="215" cy="280" r="15" fill="#FF7B72"/> <!-- 부케 -->
-                    <!-- 신랑 (정장) -->
-                    <path d="M180 400 L180 300 L160 250 C150 240, 130 250, 140 280 L140 400 Z" fill="#2C3E50"/>
-                    <path d="M180 400 L180 300 L195 250 C205 240, 215 250, 205 280 L195 400 Z" fill="#2C3E50"/>
-                    <circle cx="170" cy="215" r="14" fill="#3C1E1E"/> <!-- 신랑 머리 -->
-                    <!-- 맞잡은 손 -->
-                    <path d="M190 280 Q200 290 210 280" fill="none" stroke="#d4b499" stroke-width="4" stroke-linecap="round"/>
+                        <!-- 바다/언덕 라인 -->
+                        <path d="M 0,280 Q 75,260 150,290 T 300,270 L 300,400 L 0,400 Z" fill="#c5e1a5" opacity="0.6"/>
+                        <path d="M 0,320 Q 100,290 200,330 T 300,310 L 300,400 L 0,400 Z" fill="#aed581" opacity="0.8"/>
+                        
+                        <!-- 웨딩 아치 (Wedding Arch) -->
+                        <path d="M 60,340 C 60,110 240,110 240,340" fill="none" stroke="#d4af37" stroke-width="3" stroke-dasharray="8 6" class="floating-element"/>
+                        <path d="M 45,340 C 45,90 255,90 255,340" fill="none" stroke="#f8c058" stroke-width="1.5" opacity="0.7" class="floating-element"/>
+
+                        <!-- 신랑 신부 실루엣 (Wedding Couple) -->
+                        <g class="fade-up" style="animation-delay: 0.5s;">
+                            <!-- 신랑 -->
+                            <circle cx="125" cy="225" r="9" fill="#4a3f35"/>
+                            <path d="M 115,245 C 115,235 135,235 135,245 L 140,340 L 110,340 Z" fill="#4a3f35"/>
+                            <!-- 신부 (풍성한 드레스와 베일) -->
+                            <circle cx="160" cy="235" r="8" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
+                            <path d="M 160,245 C 175,255 185,290 185,340 L 135,340 C 135,290 145,255 150,245 Z" fill="#ffffff" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"/>
+                            <path d="M 160,235 C 175,235 182,260 182,290 C 182,300 165,270 160,235 Z" fill="#ffffff" opacity="0.7"/> 
+                            <!-- 신부가 든 코랄빛 부케 -->
+                            <circle cx="142" cy="265" r="8" fill="#ff7043"/>
+                            <circle cx="148" cy="260" r="5" fill="#f48fb1"/>
+                            <circle cx="138" cy="258" r="4" fill="#fce4ec"/>
+                        </g>
+
+                        <!-- 아치 중앙 상단 장식 꽃 -->
+                        <g class="floating-element" style="animation-delay: -1s;">
+                            <circle cx="150" cy="98" r="14" fill="#ff7043"/>
+                            <circle cx="150" cy="98" r="6" fill="#ffccbc"/>
+                            <circle cx="125" cy="108" r="10" fill="#f8c058"/>
+                            <circle cx="175" cy="108" r="10" fill="#f48fb1"/>
+                        </g>
+
+                        <!-- 컬러풀한 트로피컬 식물 장식 (왼쪽) -->
+                        <g class="floating-element">
+                            <path d="M -20,420 Q 30,300 120,280 Q 60,330 30,420 Z" fill="#558b2f"/>
+                            <path d="M 0,400 Q 50,250 140,200 Q 90,290 40,400 Z" fill="#7cb342" opacity="0.9"/>
+                            <circle cx="70" cy="300" r="18" fill="#ff7043"/>
+                            <circle cx="70" cy="300" r="8" fill="#ffccbc"/>
+                            <circle cx="40" cy="240" r="15" fill="#f48fb1"/>
+                        </g>
+
+                        <!-- 컬러풀한 트로피컬 식물 장식 (오른쪽) -->
+                        <g class="floating-element" style="animation-delay: -3s;">
+                            <path d="M 320,420 Q 270,300 180,280 Q 240,330 270,420 Z" fill="#558b2f"/>
+                            <path d="M 300,400 Q 250,250 160,200 Q 210,290 260,400 Z" fill="#7cb342" opacity="0.9"/>
+                            <circle cx="230" cy="300" r="20" fill="#ff7043"/>
+                            <circle cx="230" cy="300" r="10" fill="#ffccbc"/>
+                            <circle cx="260" cy="230" r="14" fill="#f8c058"/>
+                        </g>
+                        
+                        <!-- 금빛 흩날리는 조각들 -->
+                        <circle cx="100" cy="150" r="2" fill="#ffb300" class="floating-element"/>
+                        <circle cx="220" cy="120" r="3" fill="#ffb300" class="floating-element" style="animation-delay: -1s;"/>
+                        <circle cx="180" cy="130" r="2" fill="#ffffff" class="floating-element" style="animation-delay: -2s;"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="text-center z-10 flex flex-col items-center w-full px-4 fade-up">
+                <div class="flex items-center justify-center gap-3 mb-5 text-[18px] font-semibold text-main">
+                    <span class="tracking-[0.15em]">석현</span>
+                    <i class="fa-solid fa-heart text-[var(--accent-coral)] text-[12px]"></i>
+                    <span class="tracking-[0.15em] whitespace-nowrap">QUỲNH NHƯ</span>
+                </div>
+                <div class="bg-white px-5 py-2 rounded-full shadow-sm border border-[#ffe5e0] mb-3">
+                    <p class="number-font text-[14px] text-[var(--accent-coral)] font-medium tracking-[0.15em]">2026. 06. 14 SUN PM 12:00</p>
+                </div>
+                <p class="text-[13px] text-sub tracking-widest font-medium">베트남 부온마투옷</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             2. GREETING (인사말 & 혼주 정보)
+             ========================================== -->
+        <section class="section-padding text-center bg-white">
+            <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] mb-10 tracking-[0.3em] fade-up">INVITATION</h2>
+            
+            <p class="text-[15px] leading-[2.2] text-main mb-12 font-light fade-up">
+                서로가 마주 보며 다져온 사랑을<br>
+                이제 함께 한 곳을 바라보며 걸어가려 합니다.<br><br>
+                멀리 베트남에서 예식을 올리게 되어<br>
+                소중한 분들을 직접 모시지 못해<br>
+                죄송한 마음이 큽니다.<br><br>
+                저희의 새로운 출발을<br>
+                멀리서나마 마음으로 축복해 주신다면<br>
+                그 따뜻한 마음 잊지 않고<br>
+                예쁘게 잘 살겠습니다.
+            </p>
+
+            <!-- 컬러풀한 꽃 장식 -->
+            <div class="w-10 h-10 mx-auto mb-14 fade-up">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50,10 Q60,30 80,30 Q60,40 50,60 Q40,40 20,30 Q40,30 50,10 Z" fill="var(--accent-yellow)"/>
+                    <path d="M50,40 Q60,50 70,70 Q50,65 30,70 Q40,50 50,40 Z" fill="var(--accent-coral)"/>
                 </svg>
             </div>
 
-            <div class="names-wrap fade-up" style="transition-delay: 0.6s;">
-                석현 <span>♥</span> QUỲNH NHƯ
-            </div>
-            <div class="wedding-info fade-up" style="transition-delay: 0.8s;">
-                2026. 06. 14 SUN PM 12:00<br>
-                베트남 부온마투옷
-            </div>
-        </header>
+            <!-- 양가 혼주 안내 (중앙 정렬 세로형) -->
+            <div class="premium-card fade-up relative overflow-hidden">
+                <!-- 카드 배경 은은한 무늬 -->
+                <div class="absolute -right-10 -top-10 w-32 h-32 bg-[#fff0ed] rounded-full opacity-50"></div>
+                <div class="absolute -left-10 -bottom-10 w-24 h-24 bg-[#f0f9f4] rounded-full opacity-50"></div>
+                
+                <div class="relative z-10 flex flex-col items-center justify-center space-y-10">
+                    
+                    <!-- 신랑측 -->
+                    <div class="flex flex-col items-center text-center w-full">
+                        <span class="text-[12px] text-[var(--accent-green)] font-semibold tracking-[0.2em] mb-4">신랑측 혼주</span>
+                        <div class="flex items-center justify-center gap-3 mb-3">
+                            <span class="font-medium text-[15px] tracking-[0.1em] text-main">최재용</span>
+                            <span class="w-[3px] h-[3px] bg-[#d1c9bd] rounded-full"></span>
+                            <span class="font-medium text-[15px] tracking-[0.1em] text-main">김미옥</span>
+                        </div>
+                    </div>
 
-        <!-- ==========================================
-             2. GREETING & FAMILY (인사말 & 혼주)
-             ========================================== -->
-        <section class="py-16 px-6 bg-white text-center" id="intro">
-            <h2 class="section-title fade-up">초대합니다</h2>
-            <p class="fade-up" style="font-size: 14.5px; color: #444; line-height: 2.2;">
-                서로의 다름을 이해하며<br>
-                아름다운 인연으로 만난 두 사람,<br>
-                이제 평생을 함께하려 합니다.<br><br>
-                거리가 멀어 직접 모시지 못하고<br>
-                이렇게나마 기쁜 소식을 전하게 되었습니다.<br><br>
-                멀리서 전해주시는 따뜻한 축복과 응원,<br>
-                마음 깊이 간직하며 예쁘게 잘 살겠습니다.
-            </p>
-        </section>
+                    <!-- 장식선 -->
+                    <div class="w-full flex justify-center">
+                        <div class="w-16 h-[2px] bg-gradient-to-r from-transparent via-[#f77f72] to-transparent opacity-30"></div>
+                    </div>
 
-        <!-- 양가 혼주 세로형 배열 (대칭) -->
-        <section class="family-section" id="family">
-            <div class="fade-up family-group">
-                <div class="family-label">신랑측 혼주</div>
-                <div class="family-name">최재용 · 김미옥</div>
-                <div class="family-name-small">의 아들 <b>석현</b></div>
-            </div>
+                    <!-- 신부측 -->
+                    <div class="flex flex-col items-center text-center w-full">
+                        <span class="text-[12px] text-[var(--accent-coral)] font-semibold tracking-[0.2em] mb-4">신부측 혼주</span>
+                        <div class="flex flex-col items-center justify-center gap-2 mb-3 w-full">
+                            <span class="font-medium tracking-[0.05em] text-main w-full truncate" style="font-size: clamp(12px, 4vw, 15px);">NGUYỄN ĐỨC LAN</span>
+                            <span class="font-medium tracking-[0.05em] text-main w-full truncate" style="font-size: clamp(12px, 4vw, 15px);">NGUYỄN THỊ HỒNG YẾN</span>
+                        </div>
+                    </div>
 
-            <div style="width: 30px; height: 1px; background-color: var(--gold-light); margin: 0 auto 40px auto;"></div>
-
-            <div class="fade-up family-group" style="margin-bottom: 0;">
-                <div class="family-label">신부측 혼주</div>
-                <div class="family-name">NGUYỄN ĐỨC LAN</div>
-                <div class="family-name">NGUYỄN THỊ HỒNG YẾN</div>
-                <div class="family-name-small" style="margin-top: 8px;">의 딸 <b>QUỲNH NHƯ</b></div>
+                </div>
             </div>
         </section>
 
         <!-- ==========================================
              3. GALLERY SECTION (미니 사진첩)
              ========================================== -->
-        <section class="gallery-section" id="gallery">
-            <h2 class="section-title fade-up">저희의 아름다운 순간</h2>
-            <div class="divider fade-up"></div>
-            <p class="fade-up" style="font-size: 13px; color: #8c8275; margin-bottom: 15px;">사진을 누르면 크게 보실 수 있습니다.</p>
+        <section class="section-padding bg-[#fffdfb]" id="gallery">
+            <div class="text-center mb-10 fade-up">
+                <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] tracking-[0.3em]">GALLERY</h2>
+                <div class="divider-elegant"></div>
+            </div>
 
+            <!-- 사진 갤러리 -->
             <div class="gallery-grid fade-up">
-                <!-- Replace src paths with your real photo URLs -->
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="photo1.jpg" alt="갤러리 사진 1">
+                    <img src="photo1.jpg" alt="웨딩 사진 1" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+1'">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="photo2.jpg" alt="갤러리 사진 2">
+                    <img src="photo2.jpg" alt="웨딩 사진 2" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+2'">
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="photo3.jpg" alt="갤러리 사진 3">
+                    <img src="photo3.jpg" alt="웨딩 사진 3" onerror="this.src='https://placehold.co/400x400/ffeae6/f77f72?text=Photo+3'">
                 </div>
             </div>
         </section>
 
         <!-- ==========================================
-             4. ACCOUNT & CONTACT (마음 전하실 곳 - 부모님)
+             4. BANK ACCOUNT & CONTACT (마음 전하실 곳)
              ========================================== -->
-        <section class="py-16 px-5 bg-[#faf8f5]" id="money">
-            <h2 class="section-title fade-up">마음 전하실 곳</h2>
-            <p class="fade-up text-center mb-8" style="font-size: 13.5px; color: #777;">
-                참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.<br>너른 양해 부탁드립니다.
-            </p>
+        <section class="section-padding bg-[#fff7f2] text-center pb-28 border-t border-[#ffebe3]">
+            <div class="fade-up">
+                <h2 class="text-[16px] font-semibold text-[var(--accent-coral)] mb-5 tracking-[0.3em]">FOR YOUR HEART</h2>
+                <p class="text-[14px] text-sub mb-10 leading-relaxed font-medium">
+                    참석하지 못하시는 분들을 위해<br>계좌번호를 기재하였습니다.<br>너른 양해 부탁드립니다.
+                </p>
+            </div>
 
-            <!-- 1. 아버님 계좌/연락 카드 -->
-            <div class="account-card fade-up">
-                <div class="bank-info-wrap">
+            <!-- 신랑측 아버님 계좌 & 연락처 카드 -->
+            <div class="premium-card mb-6 text-left fade-up bg-white">
+                <div class="flex justify-between items-center mb-4">
                     <div>
-                        <div class="text-[14px] font-semibold text-main mb-1">신랑 아버지 <span class="text-[var(--accent-green)]">최재용</span></div>
-                        <div class="text-[14px] text-gray-600 tracking-wider">농협 461014-52-161524</div>
+                        <span class="text-[12px] font-bold text-[var(--accent-green)] block mb-1 tracking-widest">신랑측 아버님</span>
+                        <span class="text-[17px] font-semibold text-main tracking-widest">최재용</span>
                     </div>
-                    <button class="copy-btn" onclick="copyAccount('46101452161524')">
-                        복사하기
+                </div>
+                
+                <div class="bg-[#f2f7f4] rounded-xl p-4 mb-5 flex justify-between items-center border border-[#e2efe7]">
+                    <p class="number-font text-[15px] text-[#2c4c3b] tracking-wide font-medium">농협 461014-52-161524</p>
+                    <button onclick="copyAccount('농협 46101452161524')" class="btn-colorful text-[12px] px-3 py-1.5 rounded-lg bg-white text-[var(--accent-green)] border border-[#cce0d5] shadow-sm flex items-center gap-1.5 font-medium">
+                        <i class="fa-regular fa-copy"></i> 복사
                     </button>
                 </div>
-                <div class="flex gap-3 mt-4 border-t border-[#f0f0f0] pt-4">
-                    <a href="tel:010-8809-8317" class="flex-1 bg-white text-[var(--accent-green)] border border-[#cbe4d6] text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
+                
+                <div class="flex gap-3">
+                    <a href="tel:010-8809-8317" class="flex-1 bg-white text-[var(--accent-green)] border border-[#cce0d5] text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
                         <i class="fa-solid fa-phone"></i> 전화
                     </a>
                     <a href="sms:010-8809-8317" class="flex-1 bg-[var(--accent-green)] text-white text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
@@ -427,18 +404,23 @@
                 </div>
             </div>
 
-            <!-- 2. 어머님 계좌/연락 카드 -->
-            <div class="account-card fade-up">
-                <div class="bank-info-wrap">
+            <!-- 신랑측 어머님 계좌 & 연락처 카드 -->
+            <div class="premium-card text-left fade-up bg-white">
+                <div class="flex justify-between items-center mb-4">
                     <div>
-                        <div class="text-[14px] font-semibold text-main mb-1">신랑 어머니 <span class="text-[var(--accent-coral)]">김미옥</span></div>
-                        <div class="text-[14px] text-gray-600 tracking-wider">국민 483925-01-025468</div>
+                        <span class="text-[12px] font-bold text-[var(--accent-coral)] block mb-1 tracking-widest">신랑측 어머님</span>
+                        <span class="text-[17px] font-semibold text-main tracking-widest">김미옥</span>
                     </div>
-                    <button class="copy-btn" onclick="copyAccount('48392501025468')">
-                        복사하기
+                </div>
+                
+                <div class="bg-[#fff0ed] rounded-xl p-4 mb-5 flex justify-between items-center border border-[#ffe0d9]">
+                    <p class="number-font text-[15px] text-[#6b3026] tracking-wide font-medium">국민 483925-01-025468</p>
+                    <button onclick="copyAccount('국민 48392501025468')" class="btn-colorful text-[12px] px-3 py-1.5 rounded-lg bg-white text-[var(--accent-coral)] border border-[#ffcdbc] shadow-sm flex items-center gap-1.5 font-medium">
+                        <i class="fa-regular fa-copy"></i> 복사
                     </button>
                 </div>
-                <div class="flex gap-3 mt-4 border-t border-[#f0f0f0] pt-4">
+                
+                <div class="flex gap-3">
                     <a href="tel:010-8025-3754" class="flex-1 bg-white text-[var(--accent-coral)] border border-[#ffcdbc] text-[13.5px] py-3 rounded-xl text-center btn-colorful flex justify-center items-center gap-2 font-medium shadow-sm">
                         <i class="fa-solid fa-phone"></i> 전화
                     </a>
@@ -464,52 +446,57 @@
         </section>
 
         <!-- 푸터 -->
-        <footer class="bg-[var(--accent-coral)] py-16 text-center text-white relative overflow-hidden">
-            <svg class="absolute top-0 left-0 w-full" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0L1440 0V30C1440 30 1140 120 720 120C300 120 0 30 0 30V0Z" fill="white"/>
-            </svg>
-            <div class="mt-8">
-                <p class="text-[13px] tracking-widest font-light mb-2">THANK YOU</p>
-                <h2 class="text-[24px] font-serif tracking-wider">S & Q</h2>
+        <footer class="bg-[#f26f63] py-16 text-center text-white relative overflow-hidden">
+            <!-- 푸터 배경 꾸밈 -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-20">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
+                    <path d="M0,0 Q50,20 100,0 L100,100 L0,100 Z" fill="#ff8f85"/>
+                </svg>
+            </div>
+            <div class="relative z-10">
+                <p class="text-[20px] font-medium tracking-[0.4em] mb-3">S & Q</p>
+                <p class="text-[12px] tracking-widest opacity-90 font-light">Thank you for your blessing.</p>
             </div>
         </footer>
 
-        <!-- Toast Message -->
-        <div id="toast">계좌번호가 복사되었습니다.</div>
-        
-        <!-- Lightbox Container -->
+        <!-- 이미지 라이트박스 -->
         <div class="lightbox" id="lightbox">
-            <span class="close-btn" onclick="closeLightbox()">&times;</span>
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
             <img id="lightbox-img" src="" alt="확대된 사진">
         </div>
 
+        <!-- 복사 완료 토스트 -->
+        <div id="toast" class="toast"><i class="fa-solid fa-check text-white mr-2"></i>계좌번호가 복사되었습니다.</div>
+
     </div>
 
+    <!-- 스크립트 -->
     <script>
-        // --- 0. Fade-up 스크롤 애니메이션 ---
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+        // --- 1. 스크롤 애니메이션 (Fade-up) ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const fadeElements = document.querySelectorAll('.fade-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.fade-up').forEach((el) => {
-            observer.observe(el);
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
         });
 
-        // --- 1. COPY ACCOUNT ---
-        function copyAccount(accountNumber) {
+        // --- 2. 계좌번호 복사 및 토스트 ---
+        function copyAccount(text) {
+            const cleanText = text.replace(/[^0-9]/g, '');
             const textArea = document.createElement("textarea");
-            textArea.value = accountNumber;
+            textArea.value = cleanText;
             document.body.appendChild(textArea);
             textArea.select();
             
@@ -525,41 +512,41 @@
 
         function showToast() {
             const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 2500);
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2500);
         }
 
-        // --- 2. PHOTO GALLERY LIGHTBOX ---
-        let currentImgIndex = 0;
+        // --- 3. 갤러리 라이트박스 ---
         const images = [
             "photo1.jpg",
             "photo2.jpg",
             "photo3.jpg"
         ];
 
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+
         function openLightbox(index) {
-            const lightbox = document.getElementById("lightbox");
-            const lightboxImg = document.getElementById("lightbox-img");
-            currentImgIndex = index;
-            lightboxImg.src = images[currentImgIndex];
+            lightboxImg.src = images[index];
             lightbox.classList.add("active");
             document.body.style.overflow = "hidden";
         }
 
         function closeLightbox() {
-            const lightbox = document.getElementById("lightbox");
             lightbox.classList.remove("active");
             document.body.style.overflow = "auto";
         }
 
-        document.getElementById("lightbox").addEventListener('click', function(e) {
-            if (e.target !== document.getElementById("lightbox-img")) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target !== lightboxImg) {
                 closeLightbox();
             }
         });
 
-        // --- 3. 카카오톡 공유 기능 ---
-        // 발급받은 자바스크립트 키 적용 완료!
+        // --- 4. 카카오톡 공유 기능 ---
+        // ★중요★ 카카오 개발자 센터에서 발급받은 본인의 'JavaScript 키'를 아래에 넣어야 작동합니다!
         Kakao.init('f8aa2731ec3ff22737662b385f85dad6'); 
 
         function shareMessage() {
@@ -576,7 +563,7 @@
                 },
                 buttons: [
                     {
-                        title: '청첩장 보기',
+                        title: '청첩장 보기', // 여기에 원하시던 버튼이 들어갑니다!
                         link: {
                             mobileWebUrl: 'https://ChoiSeokhyun1.github.io/merry/',
                             webUrl: 'https://ChoiSeokhyun1.github.io/merry/',
